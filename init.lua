@@ -87,7 +87,19 @@ local handlers = {
 vim.cmd("COQnow --shut-up")
 
 require("mason").setup()
-require("mason-lspconfig").setup({handlers = handlers})
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    -- Python
+    pyright = {},
+    pyink = {},
+    ruff = {},
+    ruff_lsp = {},
+    
+    -- Lua
+    stylua = {},
+    lua_ls = {}
+  },
+  handlers = handlers})
 require("mason-null-ls").setup({
   automatic_installation = false,
   automatic_setup = true,
