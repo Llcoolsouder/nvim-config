@@ -24,6 +24,11 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   "nvim-lua/plenary.nvim",
+  {
+    'nvim-telescope/telescope.nvim', 
+    tag = '0.1.2',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
   {"williamboman/mason.nvim", build = ":MasonUpdate"},
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
@@ -106,4 +111,11 @@ require("mason-null-ls").setup({
   handlers = {}
 })
 require("null-ls").setup()
+
+-- Configure Fuzzy finder
+local telescope = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', telescope.find_files, {})
+vim.keymap.set('n', '<leader>fg', telescope.live_grep, {})
+vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
+vim.keymap.set('n', '<leader>fh', telescope.help_tags, {})
 
